@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="ionicons-2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="Resources/Grid.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
+		<title>Productivity Tracker</title>
+	</head>
+	<body>
+    <nav>
+        <div class="row">
+            <h2 class="brand">Tikker</h2>
+            <h2 class="type">Productivity Clock</h2>
+        </div>
+    </nav>
+    	<section class="stopwatch">
+				<div id="timer">00:00:00</div>
+				<div class="row buttons">
+					<button class="btn" id="start" onclick="startTimer()">Start</button>
+					<button class="btn" id="stop" onclick="stopTimer()">Stop</button>
+					<button class="btn" id="reset" onclick="reset()">Reset</button>
+				</div>    		
+    	</section>
+
+
+		<section id="activity-inputs">
+			<input type="text" placeholder ="Activity" id="activity-input">
+		<!-- 	<input type="text" placeholder="Completed Time" id="activityTime-input"> -->
+			<button class="btn" id="submit-activity" onclick="handlers.addActivity()">Enter</button>
+		</section>
+		<section id="main">
+			<ul id="activity-list"></ul>
+		</section>
+
+	<script src="app.js"></script>	
+	</body>
+</html>
