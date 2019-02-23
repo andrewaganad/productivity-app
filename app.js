@@ -60,7 +60,7 @@ var view = {
 	createDeleteButton: function() {
 		// Want to create the delete button here
 		var deleteButton = document.createElement('button');
-		deleteButton.className = 'deleteActivity btn';
+		deleteButton.className = 'deleteActivity';
 		deleteButton.textContent = 'Delete';
 		return deleteButton;
 	}
