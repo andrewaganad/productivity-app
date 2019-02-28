@@ -8,6 +8,9 @@ var activityList = {
 	},
 	deleteActivity: function(position) {
 		this.activities.splice(position, 1)
+	},
+	deleteAllActivities: function() {
+		this.activities.splice(0);
 	}
 }
 
@@ -29,12 +32,17 @@ var handlers = {
 	deleteActivity: function(position) {
 		activityList.deleteActivity(position);
 		view.displayActivities();
+	},
+	deleteAllActivities: function() {
+		activityList.deleteAllActivities();
+		view.displayActivities();
 	}
 }
 
 var view = {
 	displayActivities: function() {
 		var activitiesUl = document.querySelector('ul');
+		var activityInputsSection = document.querySelector('#activity-inputs');
 		activitiesUl.innerHTML = '';
 
 		// For each activity, create an li element and add the activity to it
@@ -54,8 +62,10 @@ var view = {
 			activityTimeLi.appendChild(this.createDeleteButton());
 			activitiesUl.appendChild(activityLi);
 			activitiesUl.appendChild(activityTimeLi);
-			reset();
+
+			
 		}, this)
+		reset();
 	},
 	createDeleteButton: function() {
 		// Want to create the delete button here
@@ -63,8 +73,29 @@ var view = {
 		deleteButton.className = 'deleteActivity';
 		deleteButton.textContent = 'Delete';
 		return deleteButton;
+	},
+	// displayDeleteAllActivitiesButton: function() {
+	// 	var deleteAllActivitiesButton = document.getElementById('deleteAllActivities');
+	// 	deleteAllActivitiesButton.style.display = 'inline-block';
+	// },
+	displayDeleteAllActivitiesButton: function() {
+		// get the input value inputActivity
+		// get the id of an activity to use activityList.activities[i].activity
+		var activityInput = document.getElementById('activity-input');
+		if (activityList.activities.length > 0) {
+			document.getElementById('deleteAllActivities').style.display = 'inline-block';
+		} else {
+			document.getElementById('deleteAllActivities').style.display = 'none';
+		}
 	}
+	// createDeleteAllActivitiesButton: function() {
+	// 	var deleteButton = document.createElement('button');
+	// 	deleteButton.id = 'deleteAllActivities';
+	// 	deleteButton.textContent = 'Clear';
+	// 	return deleteButton;		
+	// }
 }
+
 
 // Setup event listeners here so when delete button is clicked, handlers.deleteActivity runs
 var setupEventListeners = {
@@ -77,6 +108,10 @@ var setupEventListeners = {
 			if (event.target.className === 'deleteActivity') {
 				var position = event.target.closest('li').id;
 				handlers.deleteActivity(position);
+			}
+
+			if (event.target.className === 'deleteActivity') {
+				view.displayDeleteAllActivitiesButton();
 			}
 		})
 	}
